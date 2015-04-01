@@ -1,0 +1,177 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+       
+    <groupId>com.cbossgroup.solr</groupId>
+    <artifactId>web-application</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+
+    <description>Main Web Application</description>
+
+
+    <!--<version>0.0.1-SNAPSHOT</version>-->
+    <packaging>war</packaging>
+    <properties>
+        <spring.version>4.1.5.RELEASE</spring.version>
+    </properties>   
+    
+    <dependencies>
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>taglibs</groupId>-->
+            <!--<artifactId>standard</artifactId>-->
+            <!--<version>1.1.2</version>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+                <version>${spring.version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+                <version>${spring.version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+
+    </dependencies>
+    
+   
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <finalName>court</finalName>
+	<pluginManagement>
+	<plugins>
+		<!--<plugin>-->
+			<!--<groupId>org.eclipse.m2e</groupId>-->
+				<!--<artifactId>lifecycle-mapping</artifactId>-->
+				<!--<version>1.0.0</version>-->
+				<!--<configuration>-->
+					<!--<lifecycleMappingMetadata>-->
+						<!--<pluginExecutions>-->
+							<!--<pluginExecution>-->
+								<!--<pluginExecutionFilter>-->
+									<!--<groupId>org.apache.maven.plugins</groupId>-->
+									<!--<artifactId>maven-dependency-plugin</artifactId>-->
+									<!--<versionRange>[1.0.0,)</versionRange>-->
+									<!--<goals>-->
+										<!--<goal>copy-dependencies</goal>-->
+									<!--</goals>-->
+								<!--</pluginExecutionFilter>-->
+								<!--<action>-->
+									<!--<ignore />-->
+								<!--</action>-->
+							<!--</pluginExecution>-->
+						<!--</pluginExecutions>-->
+					<!--</lifecycleMappingMetadata>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
+			<!--<plugin>-->
+			  <!--<groupId>org.apache.maven.plugins</groupId>-->
+			  <!--<artifactId>maven-resources-plugin</artifactId>-->
+			  <!--<version>2.6</version>-->
+			  <!--<executions>-->
+			  <!--</executions>-->
+			<!--</plugin>-->
+			<!--<plugin>-->
+			  <!--<groupId>org.apache.maven.plugins</groupId>-->
+			  <!--<artifactId>maven-dependency-plugin</artifactId>-->
+			  <!--<executions>-->
+			    <!--<execution>-->
+			      <!--<id>copy-dependencies</id>-->
+			      <!--<phase>prepare-package</phase>-->
+			      <!--<goals>-->
+				<!--<goal>copy-dependencies</goal>-->
+			      <!--</goals>-->
+			      <!--<configuration>-->
+				<!--<outputDirectory>${project.build.directory}/lib</outputDirectory>-->
+			      <!--</configuration>-->
+			    <!--</execution>-->
+			  <!--</executions>-->
+			<!--</plugin>-->
+			<!--<plugin>-->
+			  <!--<groupId>org.apache.maven.plugins</groupId>-->
+			  <!--<artifactId>maven-jar-plugin</artifactId>-->
+			  <!--<configuration>-->
+			    <!--<archive>-->
+			      <!--<manifest>-->
+				<!--<addClasspath>true</addClasspath>-->
+				<!--<classpathPrefix>lib/</classpathPrefix>-->
+				<!--&lt;!&ndash; <mainClass>com.apress.springrecipes.hello.Main</mainClass> &ndash;&gt;-->
+			      <!--</manifest>-->
+			    <!--</archive>-->
+			  <!--</configuration>-->
+			<!--</plugin>-->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+        </plugin>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <mode>war</mode>
+                <url>http://localhost:8080/manager/text</url>
+                <server>tomcat</server>
+                <path>/court</path>
+                <update>true</update>
+                <!--<warFile>${project.build.directory}/${project.build.finalName}.war</warFile>-->
+            </configuration>
+        </plugin>
+		</plugins>
+	</pluginManagement>
+        <!--<plugins> -->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-dependency-plugin</artifactId>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    </build>
+</project>
